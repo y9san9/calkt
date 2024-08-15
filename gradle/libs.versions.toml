@@ -1,0 +1,13 @@
+[versions]
+
+kotlin = "2.0.0"
+bignum = "0.3.10"
+
+calkt = "0.0.1"
+
+[libraries]
+
+bignum = { module = "com.ionspin.kotlin:bignum", version.ref = "bignum" }
+
+# gradle plugins
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
