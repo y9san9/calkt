@@ -1,24 +1,41 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
-    id("org.gradle.maven-publish")
+    id("com.vanniktech.maven.publish")
 }
 
-group = "app.meetacy.ksm"
+group = "me.y9san9.calkt"
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHub"
-            url = uri("https://maven.pkg.github.com/meetacy/ksm")
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+
+    pom {
+        name = "calkt"
+        description = "Kotlin library that supports parsing and calculating various expressions"
+        url = "https://github.com/y9san9/calkt"
+
+        licenses {
+            license {
+                name = "MIT"
+                distribution = "repo"
+                url = "https://github.com/y9san9/calkt/blob/main/LICENSE.md"
             }
         }
-    }
 
-    publications.withType<MavenPublication> {
-        versionFromProperties { version ->
-            this.version = version
+        developers {
+            developer {
+                id = "y9san9"
+                name = "Alex Sokol"
+                email = "y9san9@gmail.com"
+            }
+        }
+
+        scm {
+            connection ="scm:git:ssh://github.com/y9san9/calkt.git"
+            developerConnection = "scm:git:ssh://github.com/y9san9/calkt.git"
+            url = "https://github.com/y9san9/calkt"
         }
     }
+
+    signAllPublications()
 }

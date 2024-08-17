@@ -29,26 +29,13 @@ Parsed as: (((1 Kilometers) minus (0.5 Miles)) plus (2 Yards)).convert(Inches)
 Result: 7886.272 Inches
 ```
 
-## Implementation
+## Dependency
 
-Work In Progress. Will be available at maven central soon.
-Now you can use workarounds like [jitpack.io](https://jitpack.io/#y9san9/calkt/-SNAPSHOT):
+You can get latest version from `Releases` tab on GitHub.
 
-Add Jitpack repo in the root build.gradle at the end of repositories:
-
-```kotlin
-dependencyResolutionManagement {
-  repositories {
-    mavenCentral()
-    maven("https://jitpack.io")
-  }
-}
-```
-
-Step 2. Add the dependency
 ```kotlin
 dependencies {
-  implementation("com.github.y9san9:calkt:-SNAPSHOT")
+  implementation("com.github.y9san9:calkt:$version")
 }
 ```
 
