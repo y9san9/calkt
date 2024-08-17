@@ -35,7 +35,7 @@ You can get latest version from `Releases` tab on GitHub.
 
 ```kotlin
 dependencies {
-  implementation("com.github.y9san9:calkt:$version")
+  implementation("me.y9san9.calkt:units:$version")
 }
 ```
 
