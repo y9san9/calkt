@@ -23,3 +23,7 @@ kotlin {
     iosX64()
     iosSimulatorArm64()
 }
+
+dependencies {
+    commonTestImplementation(kotlin("test"))
+}

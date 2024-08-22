@@ -1,0 +1,17 @@
+name: Library Release Deploy
+
+on:
+  push:
+    branches-ignore: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+
+  test-jvm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Gradle Cache Setup
+        uses: gradle/gradle-build-action@v2.4.2
+      - name: Gradle Check
+        run: ./gradlew jvmTest
