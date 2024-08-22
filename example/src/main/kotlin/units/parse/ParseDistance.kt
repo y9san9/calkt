@@ -6,37 +6,37 @@ import units.DistanceUnitKey
 
 object ParseDistance {
     // Metric
-    val kilometers = UnitsParseUnitKeyFunction.ofWords(
+    val kilometers = UnitsParseUnitKeyFunction.ofStrings(
         DistanceUnitKey.Kilometers,
-        "km", "kilometer", "kilometers"
+        "km", "kilometer", "kilometers", "\$CSACS*(_)(*"
     )
-    val meters = UnitsParseUnitKeyFunction.ofWords(
+    val meters = UnitsParseUnitKeyFunction.ofStrings(
         DistanceUnitKey.Meters,
         "m", "meter", "meters"
     )
-    val centimeters = UnitsParseUnitKeyFunction.ofWords(
+    val centimeters = UnitsParseUnitKeyFunction.ofStrings(
         DistanceUnitKey.Centimeters,
         "cm", "centimeter", "centimeters"
     )
-    val millimeters = UnitsParseUnitKeyFunction.ofWords(
+    val millimeters = UnitsParseUnitKeyFunction.ofStrings(
         DistanceUnitKey.Millimeters,
         "mm", "millimeter", "millimeters"
     )
 
     // Imperial
-    val mile = UnitsParseUnitKeyFunction.ofWords(
+    val mile = UnitsParseUnitKeyFunction.ofStrings(
         DistanceUnitKey.Miles,
         "mi", "mile"
     )
-    val yard = UnitsParseUnitKeyFunction.ofWords(
+    val yard = UnitsParseUnitKeyFunction.ofStrings(
         DistanceUnitKey.Yards,
         "yd", "yard"
     )
-    val foot = UnitsParseUnitKeyFunction.ofWords(
+    val foot = UnitsParseUnitKeyFunction.ofStrings(
         DistanceUnitKey.Feet,
         "ft", "foot", "feet"
     )
-    val inches = UnitsParseUnitKeyFunction.ofWords(
+    val inches = UnitsParseUnitKeyFunction.ofStrings(
         DistanceUnitKey.Inches,
         "in", "inch", "inches"
     )
