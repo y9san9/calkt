@@ -16,8 +16,19 @@ env:
 
 jobs:
 
+  test-jvm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Gradle Cache Setup
+        uses: gradle/gradle-build-action@v2.4.2
+      - name: Gradle Check
+        run: ./gradlew jvmTest
+
   deploy-multiplatform:
     runs-on: ubuntu-latest
+    needs:
+      - test-jvm
     outputs:
       release_version: ${{ steps.output_version.outputs.release_version }}
     steps:
@@ -38,6 +49,8 @@ jobs:
 
   deploy-jvm:
     runs-on: ubuntu-latest
+    needs:
+      - test-jvm
     steps:
       - uses: actions/checkout@v3
       - name: Gradle Cache Setup
@@ -53,6 +66,8 @@ jobs:
 
   deploy-js:
     runs-on: ubuntu-latest
+    needs:
+      - test-jvm
     steps:
       - uses: actions/checkout@v3
       - name: Gradle Cache Setup
@@ -68,6 +83,8 @@ jobs:
 
   deploy-ios-x64:
     runs-on: macos-latest
+    needs:
+      - test-jvm
     steps:
       - uses: actions/checkout@v3
       - name: Gradle Cache Setup
@@ -88,6 +105,8 @@ jobs:
 
   deploy-ios-arm64:
     runs-on: macos-latest
+    needs:
+      - test-jvm
     steps:
       - uses: actions/checkout@v3
       - name: Gradle Cache Setup
@@ -108,6 +127,8 @@ jobs:
 
   deploy-ios-simulator-arm64:
     runs-on: macos-latest
+    needs:
+      - test-jvm
     steps:
       - uses: actions/checkout@v3
       - name: Gradle Cache Setup

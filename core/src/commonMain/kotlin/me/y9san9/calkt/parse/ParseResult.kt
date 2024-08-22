@@ -47,6 +47,13 @@ public fun <T> ParseResult<T>.getOrFail(context: ParseContext): T {
     }
 }
 
+public fun <T> ParseResult<T>.getOrThrow(): T {
+    return when (this) {
+        is ParseResult.Failure -> error("Parse result is expected to be Success")
+        is ParseResult.Success -> this.value
+    }
+}
+
 public inline fun <T> ParseResult<T>.getOrElse(
     context: ParseContext,
     recover: (ParseResult.Failure) -> T
