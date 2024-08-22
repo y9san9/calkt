@@ -4,7 +4,7 @@ kotlin = "2.0.0"
 bignum = "0.3.10"
 maven-publish = "0.29.0"
 
-calkt = "0.0.2"
+calkt = "0.0.4"
 
 [libraries]
 
