@@ -16,6 +16,8 @@ public fun interface UnitsParseUnitKeyFunction {
             context.token {
                 for (string in strings) {
                     if (context.startsWith(string)) {
+                        val nextChar = context.string.getOrNull(index = context.position + string.length)
+                        if (nextChar?.isLetter() == true) continue
                         context.drop(string.length)
                         return@UnitsParseUnitKeyFunction key
                     }

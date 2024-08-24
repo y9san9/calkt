@@ -49,7 +49,7 @@ public class UnitsMathParseOperand(
             val unitKey = parseUnitKey(context)
 
             return UnitsExpression.Conversion(
-                value = MathExpression.Number(PreciseNumber.Companion.of(1)),
+                value = MathExpression.Number(PreciseNumber.of(1)),
                 key = unitKey
             )
         }
