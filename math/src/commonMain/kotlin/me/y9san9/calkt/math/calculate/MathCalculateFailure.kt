@@ -7,8 +7,13 @@ import me.y9san9.calkt.calculate.CalculateResult
 @OptIn(CalculateSubclass::class)
 public sealed interface MathCalculateFailure : CalculateResult.Failure {
     public data object UnsupportedInfixOperator : MathCalculateFailure
+    public data object UnsupportedUnaryOperator : MathCalculateFailure
 }
 
 public fun CalculateContext.unsupportedInfixOperator(): Nothing {
     fail(MathCalculateFailure.UnsupportedInfixOperator)
+}
+
+public fun CalculateContext.unsupportedUnaryOperator(): Nothing {
+    fail(MathCalculateFailure.UnsupportedUnaryOperator)
 }

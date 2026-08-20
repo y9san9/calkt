@@ -4,16 +4,20 @@ import me.y9san9.calkt.calculate.CalculateContext
 import me.y9san9.calkt.calculate.CalculateResult
 import me.y9san9.calkt.calculate.plus
 import me.y9san9.calkt.math.calculate.DefaultMathCalculateInfixOperator
+import me.y9san9.calkt.math.calculate.DefaultMathCalculateUnaryOperator
 import me.y9san9.calkt.math.calculate.MathCalculate
 import me.y9san9.calkt.math.calculate.MathCalculateInfixOperatorFunction
+import me.y9san9.calkt.math.calculate.MathCalculateUnaryOperatorFunction
 import me.y9san9.calkt.math.calculate.plus
 
 private val defaultCalculateInfixOperator = DefaultMathCalculateInfixOperator + UnitsMathCalculateInfixOperator
+private val defaultCalculateUnaryOperator = DefaultMathCalculateUnaryOperator + UnitsMathCalculateUnaryOperator
 
 public fun CalculateContext.calculateUnitsExpression(
     convert: UnitsConvertFunction,
-    calculateInfixOperator: MathCalculateInfixOperatorFunction = defaultCalculateInfixOperator
+    calculateInfixOperator: MathCalculateInfixOperatorFunction = defaultCalculateInfixOperator,
+    calculateUnaryOperator: MathCalculateUnaryOperatorFunction = defaultCalculateUnaryOperator,
 ): CalculateResult.Success {
-    val function = MathCalculate(calculateInfixOperator) + UnitsCalculate(convert)
+    val function = MathCalculate(calculateInfixOperator, calculateUnaryOperator) + UnitsCalculate(convert)
     return function(context)
 }

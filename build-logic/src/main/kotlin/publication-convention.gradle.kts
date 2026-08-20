@@ -1,41 +1,44 @@
-import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
     id("com.vanniktech.maven.publish")
 }
 
-group = "me.y9san9.calkt"
-
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+    publishToMavenCentral(automaticRelease = true)
 
     pom {
-        name = "calkt"
+        name = "calkt-${project.name}"
         description = "Kotlin library that supports parsing and calculating various expressions"
-        url = "https://github.com/y9san9/calkt"
+        url = "https://github.com/itzephir/calkt"
 
         licenses {
             license {
-                name = "MIT"
+                name = "MIT License"
                 distribution = "repo"
-                url = "https://github.com/y9san9/calkt/blob/main/LICENSE.md"
+                url = "https://github.com/itzephir/calkt/blob/main/LICENSE.md"
             }
         }
 
         developers {
             developer {
-                id = "y9san9"
-                name = "Alex Sokol"
-                email = "y9san9@gmail.com"
+                id = "itzephir"
+                name = "Dmitry Dvoryannikov"
+                email = "81320723+itzephir@users.noreply.github.com"
+                url = "https://github.com/itzephir"
             }
         }
 
         scm {
-            connection ="scm:git:ssh://github.com/y9san9/calkt.git"
-            developerConnection = "scm:git:ssh://github.com/y9san9/calkt.git"
-            url = "https://github.com/y9san9/calkt"
+            connection = "scm:git:https://github.com/itzephir/calkt.git"
+            developerConnection = "scm:git:ssh://git@github.com/itzephir/calkt.git"
+            url = "https://github.com/itzephir/calkt"
         }
     }
 
-    signAllPublications()
+    val hasSecretKeyRing = providers.gradleProperty("signing.secretKeyRingFile")
+        .map { file(it).isFile }
+        .getOrElse(false)
+
+    if (providers.gradleProperty("signingInMemoryKey").isPresent || hasSecretKeyRing) {
+        signAllPublications()
+    }
 }

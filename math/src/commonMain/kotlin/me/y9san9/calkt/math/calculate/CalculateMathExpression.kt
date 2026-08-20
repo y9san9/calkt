@@ -4,8 +4,9 @@ import me.y9san9.calkt.calculate.CalculateContext
 import me.y9san9.calkt.calculate.CalculateResult
 
 public fun CalculateContext.calculateMathExpression(
-    calculateInfixOperator: MathCalculateInfixOperatorFunction = DefaultMathCalculateInfixOperator
+    calculateInfixOperator: MathCalculateInfixOperatorFunction = DefaultMathCalculateInfixOperator,
+    calculateUnaryOperator: MathCalculateUnaryOperatorFunction = DefaultMathCalculateUnaryOperator,
 ): CalculateResult.Success {
-    val calculate = MathCalculate(calculateInfixOperator)
+    val calculate = MathCalculate(calculateInfixOperator, calculateUnaryOperator)
     return calculate(context)
 }

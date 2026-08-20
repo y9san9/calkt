@@ -2,4 +2,11 @@ plugins {
     id("print-version-convention")
 }
 
-version = libs.versions.calkt.get()
+val calktVersion = providers.gradleProperty("releaseVersion")
+    .orElse(libs.versions.calkt)
+    .get()
+
+allprojects {
+    group = "com.itzephir.calkt"
+    version = calktVersion
+}

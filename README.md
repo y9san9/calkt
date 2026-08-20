@@ -31,11 +31,12 @@ Result: 7886.272 Inches
 
 ## Dependency
 
-You can get latest version from `Releases` tab on GitHub.
+Releases are available from Maven Central and the
+[GitHub Releases](https://github.com/itzephir/calkt/releases) page.
 
 ```kotlin
 dependencies {
-  implementation("me.y9san9.calkt:units:$version")
+  implementation("com.itzephir.calkt:units:$version")
 }
 ```
 
@@ -53,8 +54,9 @@ functions to launch parsers/calculators.
 
 Module with implementation of basic math expressions that any
 calculator can calculate. This is where you can find logic to
-calculate numbers combined with basic supported operators (
-`+`, `-`, `*`, `/`). You can implement your own operator, like 
+calculate numbers combined with basic supported binary operators (
+`+`, `-`, `*`, `/`) and unary operators (`+`, `-`). You can implement
+your own operator, like
 in [this example](example/src/main/kotlin/operator/ModOperator.kt) (% operator).
 
 ### units

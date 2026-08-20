@@ -12,6 +12,19 @@ public sealed interface MathExpression : Expression {
         }
     }
 
+    public data class Unary(
+        val operand: Expression,
+        val key: UnaryKey
+    ) : MathExpression {
+        override fun toString(): String {
+            val operandString = when (operand) {
+                is Number -> "$operand"
+                else -> "($operand)"
+            }
+            return "$key $operandString"
+        }
+    }
+
     public data class Infix(
         val left: Expression,
         val right: Expression,

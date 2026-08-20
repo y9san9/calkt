@@ -34,8 +34,25 @@ public class PreciseNumber private constructor(
         return PreciseNumber(result)
     }
 
+    /**
+     * Returns the exact remainder after truncating division by [other].
+     *
+     * @throws ArithmeticException if [other] is zero.
+     */
     public operator fun rem(other: PreciseNumber): PreciseNumber {
-        val result = bigDecimal % other.bigDecimal
+        if (other.isZero()) {
+            throw ArithmeticException("Cannot calculate a remainder with a zero divisor")
+        }
+
+        val thisScaleExponent = bigDecimal.exponent - bigDecimal.precision + 1
+        val otherScaleExponent = other.bigDecimal.exponent - other.bigDecimal.precision + 1
+        val commonScaleExponent = min(thisScaleExponent, otherScaleExponent)
+
+        val thisInteger = bigDecimal.moveDecimalPoint(-commonScaleExponent).toBigInteger()
+        val otherInteger = other.bigDecimal.moveDecimalPoint(-commonScaleExponent).toBigInteger()
+        val remainder = thisInteger.divrem(otherInteger).remainder
+        val result = BigDecimal.fromBigInteger(remainder).moveDecimalPoint(commonScaleExponent)
+
         return PreciseNumber(result)
     }
 

@@ -6,7 +6,8 @@ import me.y9san9.calkt.calculate.CalculateResult
 import me.y9san9.calkt.math.MathExpression
 
 public class MathCalculate(
-    private val calculateInfixOperator: MathCalculateInfixOperatorFunction
+    private val calculateInfixOperator: MathCalculateInfixOperatorFunction,
+    private val calculateUnaryOperator: MathCalculateUnaryOperatorFunction = DefaultMathCalculateUnaryOperator
 ) : CalculateFunction {
     override fun invoke(context: CalculateContext): CalculateResult.Success {
         val expression = context.expression as? MathExpression ?: context.unsupportedExpression()
@@ -19,6 +20,10 @@ public class MathCalculate(
             }
             is MathExpression.Number -> {
                 MathCalculateSuccess(expression.number)
+            }
+            is MathExpression.Unary -> {
+                val operand = context.recursive(expression.operand)
+                calculateUnaryOperator(context, operand, expression.key)
             }
         }
     }

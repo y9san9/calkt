@@ -1,7 +1,5 @@
-import org.gradle.kotlin.dsl.creating
-
 tasks {
-    val printVersion by creating {
+    register("printVersion") {
         group = "CI"
 
         doFirst {

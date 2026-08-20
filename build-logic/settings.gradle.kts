@@ -1,3 +1,5 @@
+rootProject.name = "calkt-build-logic"
+
 dependencyResolutionManagement {
     repositories {
         mavenCentral()

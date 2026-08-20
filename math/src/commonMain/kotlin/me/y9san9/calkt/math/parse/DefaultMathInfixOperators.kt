@@ -12,6 +12,10 @@ public object DefaultMathInfixOperators {
         Plus + Minus  // Plus, Minus have the same priority
     )
 
+    public val levels: MathParseInfixOperatorLevels = MathParseInfixOperatorLevels(
+        list.map(::MathParseInfixOperatorLevel)
+    )
+
     public object Plus : MathParseInfixKeyFunction {
         override fun invoke(context: ParseContext): InfixKey {
             context.token("+") { ExpectedInputCause.of("+") }

@@ -14,7 +14,7 @@ public fun ParseContext.nextPreciseNumber(
 
     overrideCause(cause) {
         val number = buildString {
-            if (tryConsume("-")) append("")
+            if (tryConsume("-")) append("-")
 
             append(nextIntegerString())
 
